@@ -1,0 +1,6 @@
+C:\Users\lmcochran\Desktop\GitHub\BankApp\BankApp\bin\Debug\BankApp.exe.config
+C:\Users\lmcochran\Desktop\GitHub\BankApp\BankApp\bin\Debug\BankApp.exe
+C:\Users\lmcochran\Desktop\GitHub\BankApp\BankApp\bin\Debug\BankApp.pdb
+C:\Users\lmcochran\Desktop\GitHub\BankApp\BankApp\obj\Debug\BankApp.csprojResolveAssemblyReference.cache
+C:\Users\lmcochran\Desktop\GitHub\BankApp\BankApp\obj\Debug\BankApp.exe
+C:\Users\lmcochran\Desktop\GitHub\BankApp\BankApp\obj\Debug\BankApp.pdb
