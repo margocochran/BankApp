@@ -31,7 +31,7 @@ namespace BankApp
         #region Constructor
         public Account()
         {
-            lastAccountNumber ++ 1;
+            lastAccountNumber ++;
             AccountNumber = lastAccountNumber; 
         }
 
