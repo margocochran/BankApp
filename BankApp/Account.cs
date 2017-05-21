@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace BankApp
 {
+    public enum AccountTypes
+    {
+        Checking, 
+        Savings, 
+        CreditCard,
+        Loan
+    }
     /// <summary>
     /// Bank Account thath holds all of the information 
     /// of an account.
@@ -25,7 +32,7 @@ namespace BankApp
 
         public decimal Balance { get; private set; }
 
-        public string TypeOfAccount { get; set; }
+        public AccountTypes TypeOfAccount { get; set; }
         #endregion
 
         #region Constructor
@@ -34,6 +41,27 @@ namespace BankApp
             lastAccountNumber ++;
             AccountNumber = lastAccountNumber; 
         }
+    
+        public Account(string accountName) : this()
+        {
+            AccountName = accountName; 
+        }
+
+        public Account(string accountName, string emailAddress) : this(accountName)
+        {
+            EmailAddress = emailAddress;
+        }
+
+        public Account(string accountName, string emailAddress, AccountTypes typeOfAccount) : this(accountName, emailAddress)
+        {
+            TypeOfAccount = typeOfAccount;
+        }
+
+        public Account(string accountName, string emailAddress, AccountTypes typeOfAccount, decimal amount) : this(accountName, emailAddress, typeOfAccount)
+        {
+            Deposit(amount); 
+        }
+
 
         #endregion
 
