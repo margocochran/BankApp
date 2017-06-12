@@ -11,46 +11,43 @@ namespace BankApp
         static void Main(string[] args)
         {
             Console.WriteLine("***********Welcome to My Bank**************");
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("1. Create a new account");
-            Console.WriteLine("2. Deposit");
-            Console.WriteLine("3. Withdraw");
-            Console.WriteLine("4. Print all accounts");
-
-            var choice = Console.ReadLine();
-            switch (choice)
+            while (true)
             {
-                case "0":
-                    return; //this is a method in C# to exit a program
-                case "1":
-                    Console.Write("Account Name: "); //Console.Write - cursor will not go to next line
-                    var accountName = Console.ReadLine();
-                    Console.Write("Email Address: ");
-                    var emailAddress = Console.ReadLine();
-                    Console.WriteLine("Type of Account:");
-                    var accountTypes = Enum.GetNames(typeof(AccountTypes)); //accountTypes now contains the four values that make up Account Types
-                    for (int i = 0; i < accountTypes.Length; i++)
-                    {
-                        Console.WriteLine($"{i}. {accountTypes[i]}"); 
-                    }
-                    Console.Write("Pick an account type: ");
-                    var accountType = Convert.ToInt32(Console.ReadLine()); //accountType is singular here to differentiate from prev.
-                    Console.Write("Amount: ");
-                    var amount = Convert.ToDecimal(Console.ReadLine());
-                    var account = new Account
-                    {
-                        AccountName = accountName,
-                        EmailAddress = emailAddress,
-                        TypeOfAccount = (AccountTypes)accountType
-                    };
-                    account.Deposit(amount); 
-                    Console.WriteLine($"AccountNumber: {account.AccountNumber}, Balance: {account.Balance:C}, EmailAddress: {account.EmailAddress}, TypeOfAccount: {account.TypeOfAccount}");
-                    break; //this is needed at the end of each case
-                case "2":
-                case "3":
-                case "4":
-                default:
-                    break;
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("1. Create a new account");
+                Console.WriteLine("2. Deposit");
+                Console.WriteLine("3. Withdraw");
+                Console.WriteLine("4. Print all accounts");
+
+                var choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "0":
+                        return; //this is a method in C# to exit a program
+                    case "1":
+                        Console.Write("Account Name: "); //Console.Write - cursor will not go to next line
+                        var accountName = Console.ReadLine();
+                        Console.Write("Email Address: ");
+                        var emailAddress = Console.ReadLine();
+                        Console.WriteLine("Type of Account:");
+                        var accountTypes = Enum.GetNames(typeof(AccountTypes)); //accountTypes now contains the four values that make up Account Types
+                        for (int i = 0; i < accountTypes.Length; i++)
+                        {
+                            Console.WriteLine($"{i}. {accountTypes[i]}");
+                        }
+                        Console.Write("Pick an account type: ");
+                        var accountType = Convert.ToInt32(Console.ReadLine()); //accountType is singular here to differentiate from prev.
+                        Console.Write("Amount: ");
+                        var amount = Convert.ToDecimal(Console.ReadLine());
+                        var account = Bank.CreateAccount(emailAddress, (AccountTypes)accountType, amount, accountName);
+                        Console.WriteLine($"AccountNumber: {account.AccountNumber}, Balance: {account.Balance:C}, EmailAddress: {account.EmailAddress}, TypeOfAccount: {account.TypeOfAccount}");
+                        break; //this is needed at the end of each case
+                    case "2":
+                    case "3":
+                    case "4":
+                    default:
+                        break;
+                }
             }
 
             //Everything below can be deleted!!!
