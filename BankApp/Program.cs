@@ -43,8 +43,49 @@ namespace BankApp
                         Console.WriteLine($"AccountNumber: {account.AccountNumber}, Balance: {account.Balance:C}, EmailAddress: {account.EmailAddress}, TypeOfAccount: {account.TypeOfAccount}");
                         break; //this is needed at the end of each case
                     case "2":
+                        PrintAllAccounts();
+                        Console.Write("Select the account number for deposit: ");
+                        var accountNum = Convert.ToInt32(Console.ReadLine());
+                        account = Bank.GetAccountByAccountNumber(accountNum);
+                        if (account == null)
+                        {
+                            Console.WriteLine("Invalid account number. Please try again.");
+                        }
+                        else
+                        {
+                            Console.Write("Amount to deposit: ");
+                            amount = Convert.ToDecimal(Console.ReadLine());
+                            Bank.Deposit(account, amount);
+                            Console.WriteLine("Deposit completed successfully!"); 
+                        }
+                        break; 
                     case "3":
+                        PrintAllAccounts();
+                        Console.Write("Select the account number for withdraw: ");
+                        accountNum = Convert.ToInt32(Console.ReadLine());
+                        account = Bank.GetAccountByAccountNumber(accountNum);
+                        if (account == null)
+                        {
+                            Console.WriteLine("Invalid account number. Please try again.");
+                        }
+                        else
+                        {
+                            try
+                            {
+                                Console.Write("Amount to withdraw: ");
+                                amount = Convert.ToDecimal(Console.ReadLine());
+                                Bank.Withdraw(account, amount);
+                                Console.WriteLine("Withdraw completed successfully!");
+                            }
+                            catch(ArgumentOutOfRangeException ax)
+                            {
+                                Console.WriteLine($"Oops! Withdraw failed. Here is why - {ax.Message} ");
+                            }
+                        }
+                        break; 
                     case "4":
+                        PrintAllAccounts();
+                        break;
                     default:
                         break;
                 }
@@ -69,6 +110,15 @@ namespace BankApp
             // };
             // Console.WriteLine($"AccountNumber: {account2.AccountNumber}, Balance: {account2.Balance:C}, EmailAddress: {account2.EmailAddress}, TypeOfAccount: {account2.TypeOfAccount}");
 
-        } 
+        }
+
+        private static void PrintAllAccounts()
+        {
+            var accounts = Bank.GetAllAccounts();
+            foreach (var accnt in accounts)
+            {
+                Console.WriteLine($"AccountNumber: {accnt.AccountNumber}, Balance: {accnt.Balance:C}, EmailAddress: {accnt.EmailAddress}, TypeOfAccount: {accnt.TypeOfAccount}");
+            }
+        }
     }
 }
